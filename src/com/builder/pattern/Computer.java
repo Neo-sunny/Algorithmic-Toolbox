@@ -4,7 +4,7 @@ public class Computer {
 
 	
 	private String HDD;
-	String RAM;
+	private String RAM;
 	boolean isGraphicsCardEnabled;
 	boolean isBlueToothEnabled;
 	

@@ -7,7 +7,7 @@ public class StarBuzz {
 		Beverage bevarege= new Espresso();
 		System.out.println(bevarege.getDescription()+"  $" +bevarege.cost());
 		
-		//DarkRoast with double mocha nad whip
+		//DarkRoast with double mocha and whip
 		Beverage bevarege1= new DarkRoast();
 		bevarege1=new Mocha(bevarege1);
 		bevarege1=new Mocha(bevarege1);
