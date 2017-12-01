@@ -37,13 +37,76 @@ public class MyLinkedHashMap {
 
  /*
   * Put method of the LinkedHashMap
+  * To store the key value pair
   * */
- public void put(String key, String value){
+ public boolean put(String key, String value){
 	 Long hcode = hashCode(key);
+	// System.out.println("HashCode value during put: "+key+" "+hcode);
 	 Map m = new Map(key,value);
-	 add(m,hcode);
+	 if(add(m,hcode))
+		 return true;
+	 else
+		 return false;
+}
+ /* Method to return the value to which the key is associated 
+  * 
+  * */
+ public String get(String key){
+	 String value= search(key);
+	 System.out.println("returned value from search: "+ value);
+	 return value;
+	 
+ }
+ /* Searching the key in LinkedList
+  * 
+  * */
+ public String search(String key){
+	 String value="";
+	 Long hcode = hashCode(key);
+//	 System.out.println("HashCode value during get: "+key+" "+hcode);
+	 DLinkedList temp= head.next;
+	 while(temp.next != null){
+		 if(temp.hCodeVal.equals(hcode)){
+			 Map m= temp.map;
+			 if(key.equals(m.getKey())){
+				 value = m.getValue();	
+				 break;
+			 }else{
+				 value="Key not found";
+			 }
+		 	}else{
+		 		value= "key not available";
+		 	}
+		 temp=temp.next;
 	 }
- 
+	 return value;
+ }
+ /*
+  * Bug is that it removes all the elements 
+  * available before the key which is being removed
+  * 
+ public String remove(String key){
+	 String value= "";
+	 Long hcode = hashCode(key);
+	 DLinkedList temp= head.next;
+	 while(temp.next != null){
+		 if(temp.hCodeVal.equals(hcode)){
+			 Map m= temp.map;
+			 if(key.equals(m.getKey())){
+				 value=m.getValue();
+				 temp.prev.next=temp.next;
+				 temp.next.prev=temp.prev;
+				 break;
+			 }
+		 }else{
+			 value= "key not available";
+		 }
+		 temp=temp.next;
+	 }
+	 System.out.println("Removed key is "+key+" and value is "+value);
+	 return value;
+}
+ */
  // In what situation it will return false
  public boolean add (Map m, Long hcode ) {
 	 DLinkedList dll = new DLinkedList(m,hcode);
@@ -86,10 +149,18 @@ public class MyLinkedHashMap {
 public static void main(String[] args) {
 	MyLinkedHashMap lhmap = new MyLinkedHashMap();
 	lhmap.put("Neo", "ps");
-	lhmap.put("12", "Neo");
 	lhmap.put("ps", "npm");
 	lhmap.put("Angular", "node");
 	lhmap.put("Javascript", "Async");
+	lhmap.put("12", "Neo");
+	lhmap.printDlls();
+	lhmap.get("Neo");
+	lhmap.get("NEO");
+	lhmap.get("12");
+	lhmap.get("21");
+	lhmap.get("Pya");
+//  lhmap.remove("12");
+//	lhmap.remove("Pya");
 	lhmap.printDlls();
 }	
 }
