@@ -6,6 +6,10 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
 
+/*
+ * A program to calculate MaxFrequency and Minfrequency and its corresponding value 
+ *  dynamically i.e it calculates the values in runtime and updates as well while the values are being read from input
+ * */
 public class Frequency {
 
 	public static void main(String[] args) {
@@ -21,7 +25,7 @@ public class Frequency {
 		Scanner inp = new Scanner(System.in);
 		int N = inp.nextInt();
 		for (int i = 0; i < N; i++) {
-			int value = inp.nextInt();
+			int value = inp.nextInt();  // Taking the input
 			if (values.containsKey(value)) {
 				values.put(value, (values.get(value) + 1));
 				if (values.get(value) >= maxFrequency) {
